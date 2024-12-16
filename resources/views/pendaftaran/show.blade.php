@@ -82,6 +82,7 @@
         <h1>Detail Pendaftaran</h1>
 
         <div class="info">
+<<<<<<< HEAD
             <p><span>ID Pendaftaran:</span> {{ $pendaftaran->id }}</p>
             <p><span>Nama User:</span> {{ $pendaftaran->nama_user }}</p>
             <p><span>Tanggal Mendaftar:</span> {{ \Carbon\Carbon::parse($pendaftaran->tanggal_mendaftar)->format('d F Y') }}</p>
@@ -93,6 +94,19 @@
 
         <div class="actions">
             <a href="{{ route('pendaftaran.edit', $pendaftaran->id) }}" class="btn">Edit</a>
+=======
+            <p><span>ID Pendaftaran:</span> 12345</p>
+            <p><span>Nama User:</span> Noor Alfa Rahmah</p>
+            <p><span>Tanggal Mendaftar:</span> 16 Desember 2024</p>
+            <p><span>Beasiswa:</span> Beasiswa Unggulan Poliban</p>
+            <p><span>Status:</span> Dalam Proses</p>
+            <p><span>Dibuat Pada:</span> 1 Desember 2024</p>
+            <p><span>Diperbaharui Pada:</span> 14 Desember 2024</p>
+        </div>
+
+        <div class="actions">
+            <a href="{{ route('admin.pendaftaran.edit', id) }}" class="btn">Edit</a>
+>>>>>>> 9b0d276b26f421549bf256c4120b2321b7411eec
             <button onclick="confirmDelete()" class="btn danger">Hapus</button>
         </div>
     </div>
@@ -100,7 +114,12 @@
     <script>
         function confirmDelete() {
             if (confirm('Apakah Anda yakin ingin menghapus pendaftaran ini?')) {
+<<<<<<< HEAD
                 window.location.href = "{{ route('pendaftaran.delete', $pendaftaran->id) }}";
+=======
+                // Panggil logika untuk menghapus data di backend
+                window.location.href = "{{ route('admin.pendaftaran.delete', id) }}";
+>>>>>>> 9b0d276b26f421549bf256c4120b2321b7411eec
             }
         }
     </script>
