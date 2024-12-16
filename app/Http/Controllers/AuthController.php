@@ -23,15 +23,15 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Mengambil data user yang telah login
             $user = Auth::user();
 
-            return response()->json([
-                'message' => 'Login successful',
-                'user' => $user,
-            ]);
+            // Mengarahkan user ke halaman home setelah login sukses
+            return redirect()->route('home');
         }
 
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        // Jika kredensial salah
+        return redirect()->route('login.form')->withErrors(['email' => 'Invalid credentials'])->withInput();
     }
 
     // Registrasi User
@@ -51,10 +51,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password), // Meng-hash password
         ]);
 
-        return response()->json([
-            'message' => 'Registration successful',
-            'user' => $user,
-        ]);
+        // Mengarahkan user ke halaman login setelah registrasi
+        return redirect()->route('login.form')->with('success', 'Registration successful. Please log in.');
     }
 
     // Logout User
@@ -62,7 +60,8 @@ class AuthController extends Controller
     {
         Auth::logout();
 
-        return response()->json(['message' => 'Logout successful']);
+        // Mengarahkan user ke halaman login setelah logout
+        return redirect()->route('login.form')->with('success', 'Logout successful');
     }
 
     // Mendapatkan daftar Beasiswa

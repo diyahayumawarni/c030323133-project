@@ -3,61 +3,52 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BeasiswaPendaftaranController;
+use Illuminate\Support\Facades\Auth;
 
-/**
- * Rute untuk Halaman Utama
- */
+// Route untuk halaman depan yang mengarahkan ke login
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login.form'); // Redirect ke form login
 });
 
-/**
- * Rute untuk Autentikasi dan User Management
- */
-Route::prefix('auth')->group(function () {
-    // Rute untuk login, register, dan logout
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/logout', [AuthController::class, 'logout']);
-});
+// Route untuk menampilkan halaman login (GET)
+Route::get('auth/login', function () {
+    return view('login'); // Menampilkan form login dari view login.blade.php
+})->name('login.form');
 
-/**
- * Rute untuk Beasiswa, Pendaftaran, dan Fitur Terkait dengan Autentikasi
- */
-Route::middleware('auth')->prefix('beasiswa')->group(function () {
-    Route::get('/', [BeasiswaPendaftaranController::class, 'indexBeasiswa']);
-    Route::get('/{id}', [BeasiswaPendaftaranController::class, 'showBeasiswa']);
-    Route::post('/', [BeasiswaPendaftaranController::class, 'storeBeasiswa']);
-    Route::put('/{id}', [BeasiswaPendaftaranController::class, 'updateBeasiswa']);
-    Route::delete('/{id}', [BeasiswaPendaftaranController::class, 'destroyBeasiswa']);
-});
+// Route untuk registrasi (GET)
+Route::get('auth/register', function () {
+    return view('register'); // Halaman register (buat file register.blade.php sesuai kebutuhan)
+})->name('register.form');
 
-Route::middleware('auth')->prefix('pendaftaran')->group(function () {
-    Route::get('/', [BeasiswaPendaftaranController::class, 'indexPendaftaran']);
-    Route::get('/{id}', [BeasiswaPendaftaranController::class, 'showPendaftaran']);
-    Route::post('/', [BeasiswaPendaftaranController::class, 'storePendaftaran']);
-    Route::put('/{id}', [BeasiswaPendaftaranController::class, 'updatePendaftaran']);
-    Route::delete('/{id}', [BeasiswaPendaftaranController::class, 'destroyPendaftaran']);
-});
+// Route untuk login (POST)
+Route::post('auth/login', [AuthController::class, 'login'])->name('login');
 
-Route::middleware('auth')->prefix('dokumen')->group(function () {
-    Route::get('/', [BeasiswaPendaftaranController::class, 'indexDokumenPendukung']);
-    Route::get('/{id}', [BeasiswaPendaftaranController::class, 'showDokumenPendukung']);
-    Route::post('/', [BeasiswaPendaftaranController::class, 'storeDokumenPendukung']);
-    Route::put('/{id}', [BeasiswaPendaftaranController::class, 'updateDokumenPendukung']);
-    Route::delete('/{id}', [BeasiswaPendaftaranController::class, 'destroyDokumenPendukung']);
-});
+// Route untuk registrasi (POST)
+Route::post('auth/register', [AuthController::class, 'register'])->name('register');
 
-Route::middleware('auth')->prefix('notifikasi')->group(function () {
-    Route::get('/', [BeasiswaPendaftaranController::class, 'indexNotifikasi']);
-    Route::post('/', [BeasiswaPendaftaranController::class, 'storeNotifikasi']);
-    Route::put('/{id}', [BeasiswaPendaftaranController::class, 'updateNotifikasi']);
-    Route::delete('/{id}', [BeasiswaPendaftaranController::class, 'destroyNotifikasi']);
-});
+// Route untuk logout (POST)
+Route::post('auth/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->prefix('review')->group(function () {
-    Route::get('/', [BeasiswaPendaftaranController::class, 'indexReviewPendaftaran']);
-    Route::post('/', [BeasiswaPendaftaranController::class, 'storeReviewPendaftaran']);
-    Route::put('/{id}', [BeasiswaPendaftaranController::class, 'updateReviewPendaftaran']);
-    Route::delete('/{id}', [BeasiswaPendaftaranController::class, 'destroyReviewPendaftaran']);
+// Middleware untuk pengguna yang sudah login
+Route::middleware(['auth'])->group(function () {
+
+    // Route untuk halaman home setelah login
+    Route::get('/home', function () {
+        return view('home'); // Halaman home yang menampilkan informasi setelah login
+    })->name('home');
+
+    // Daftar beasiswa
+    Route::get('beasiswa', [BeasiswaPendaftaranController::class, 'indexBeasiswa'])->name('beasiswa.index');
+
+    // Detail beasiswa
+    Route::get('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'showBeasiswa'])->name('beasiswa.show');
+
+    // Daftar pendaftaran
+    Route::get('pendaftaran', [BeasiswaPendaftaranController::class, 'indexPendaftaran'])->name('pendaftaran.index');
+
+    // Detail pendaftaran
+    Route::get('pendaftaran/{id}', [BeasiswaPendaftaranController::class, 'showPendaftaran'])->name('pendaftaran.show');
+
+    // Daftar dokumen pendukung
+    Route::get('dokumen', [BeasiswaPendaftaranController::class, 'indexDokumenPendukung'])->name('dokumen.index');
 });
