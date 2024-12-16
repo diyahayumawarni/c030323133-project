@@ -16,14 +16,16 @@ class BeasiswaPendaftaranController extends Controller
     public function indexBeasiswa()
     {
         $beasiswas = Beasiswa::all();
-        return response()->json($beasiswas);
+        return view('beasiswa.index', compact('beasiswas'));  // Mengirim data ke view
     }
 
     // BEASISWA - Menampilkan detail beasiswa
     public function showBeasiswa($id)
     {
+        // Mengambil data beasiswa berdasarkan ID
         $beasiswa = Beasiswa::findOrFail($id);
-        return response()->json($beasiswa);
+        // Mengembalikan tampilan show dan mengirim data beasiswa ke tampilan
+        return view('beasiswa.show', compact('beasiswa'));
     }
 
     // Pendaftaran - Menampilkan daftar pendaftaran

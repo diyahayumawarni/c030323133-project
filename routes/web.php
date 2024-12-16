@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('beasiswa', [BeasiswaPendaftaranController::class, 'indexBeasiswa'])->name('beasiswa.index');
 
     // Detail beasiswa
-    Route::get('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'showBeasiswa'])->name('beasiswa.show');
+    Route::get('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'showBeasiswa'])->name('beasiswa.show'); // Menampilkan detail beasiswa
 
     // Daftar pendaftaran
     Route::get('pendaftaran', [BeasiswaPendaftaranController::class, 'indexPendaftaran'])->name('pendaftaran.index');
