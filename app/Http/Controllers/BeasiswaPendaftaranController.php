@@ -31,23 +31,31 @@ class BeasiswaPendaftaranController extends Controller
     // Pendaftaran - Menampilkan daftar pendaftaran
     public function indexPendaftaran()
     {
-        $pendaftarans = Pendaftaran::with('beasiswa', 'user')->get();
-        return response()->json($pendaftarans);
+    $pendaftaran = \App\Models\Pendaftaran::all(); // Mengambil data dari tabel pendaftaran
+    return view('pendaftaran.index', compact('pendaftaran')); // Mengarah ke view
     }
 
     // Pendaftaran - Menampilkan detail pendaftaran
     public function showPendaftaran($id)
     {
-        $pendaftaran = Pendaftaran::with('beasiswa', 'user')->findOrFail($id);
-        return response()->json($pendaftaran);
+        $detail = \App\Models\Pendaftaran::findOrFail($id); // Ambil data spesifik berdasarkan ID
+        return view('pendaftaran.show', compact('detail')); // Mengarah ke view detail
     }
+
+    public function createPendaftaran()
+    {
+        $beasiswas = Beasiswa::all();  // Mengambil semua data beasiswa untuk dropdown
+        return view('pendaftaran.create', compact('beasiswas'));  // Menampilkan form pendaftaran
+    }
+    
 
     // DOKUMEN PENDUKUNG - Menampilkan daftar dokumen pendukung
     public function indexDokumenPendukung()
     {
-        $dokumenPendukung = DokumenPendukung::with('pendaftaran')->get();
-        return response()->json($dokumenPendukung);
+    $dokumens = DokumenPendukung::all(); // Mendapatkan semua dokumen pendukung
+    return view('dokumen.index', compact('dokumens'));
     }
+
 
     // DOKUMEN PENDUKUNG - Menampilkan detail dokumen pendukung
     public function showDokumenPendukung($id)
@@ -97,22 +105,42 @@ class BeasiswaPendaftaranController extends Controller
             'status' => 'required|string'
         ]);
 
-        $pendaftaran = Pendaftaran::create($request->all());
-        return response()->json($pendaftaran, 201);
+        $pendaftaran = Pendaftaran::create($request->all());  // Menyimpan pendaftaran
+        return redirect()->route('tambah.pendaftaran')->with('success', 'Pendaftaran berhasil!');  // Redireksi dengan pesan sukses
     }
 
-    // Menambahkan Dokumen Pendukung
+    public function createDokumenPendukung()
+    {
+    return view('dokumen.create'); // Menampilkan form upload
+    }
+
     public function storeDokumenPendukung(Request $request)
     {
-        $request->validate([
-            'pendaftaran_id' => 'required|exists:pendaftarans,id',
-            'nama_dokumen' => 'required|string',
-            'file_path' => 'required|string',
-            'status_verifikasi' => 'required|string'
-        ]);
+    // Validasi file
+    $request->validate([
+        'nama_dokumen' => 'required|string',
+        'file' => 'required|file|mimes:pdf,jpeg,png,jpg|max:2048',
+    ]);
+    
+    // Mengupload file
+    $filePath = $request->file('file')->store('dokumen'); // menyimpan di folder 'dokumen'
 
-        $dokumenPendukung = DokumenPendukung::create($request->all());
-        return response()->json($dokumenPendukung, 201);
+    // Menyimpan ke database
+    DokumenPendukung::create([
+        'pendaftaran_id' => $request->pendaftaran_id,
+        'nama_dokumen' => $request->nama_dokumen,
+        'file_path' => $filePath,
+        'status_verifikasi' => 'pending',
+    ]);
+    
+    return redirect()->route('dokumen.index')->with('success', 'Dokumen berhasil diupload.');
+    }
+
+    public function verifikasi(DokumenPendukung $dokumen)
+    {
+    $dokumen->update(['status_verifikasi' => 'verifikasi']);
+    
+    return redirect()->route('dokumen.index')->with('success', 'Status dokumen diperbarui.');
     }
 
     // Menambahkan Review Pendaftaran
