@@ -43,9 +43,8 @@
                                 <label class="form-check-label" for="remember">Remember me</label>
                             </div>
 
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-end">
                                 <button type="submit" class="btn btn-primary">Login</button>
-                                <a href="{{ route('register.form') }}" class="btn btn-link">Register</a>
                             </div>
                         </form>
                     </div>

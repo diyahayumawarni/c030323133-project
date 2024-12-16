@@ -40,15 +40,67 @@ Route::middleware(['auth'])->group(function () {
     // Daftar beasiswa
     Route::get('beasiswa', [BeasiswaPendaftaranController::class, 'indexBeasiswa'])->name('beasiswa.index');
 
-    // Detail beasiswa
-    Route::get('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'showBeasiswa'])->name('beasiswa.show'); // Menampilkan detail beasiswa
+    // Route untuk detail beasiswa
+    Route::get('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'showBeasiswa'])->name('beasiswa.show');
 
-    // Daftar pendaftaran
+    // Route untuk daftar pendaftaran
     Route::get('pendaftaran', [BeasiswaPendaftaranController::class, 'indexPendaftaran'])->name('pendaftaran.index');
 
-    // Detail pendaftaran
+    // Route untuk detail pendaftaran
     Route::get('pendaftaran/{id}', [BeasiswaPendaftaranController::class, 'showPendaftaran'])->name('pendaftaran.show');
+  
+// Route untuk halaman edit pendaftaran
+Route::get('pendaftaran/{id}/edit', [BeasiswaPendaftaranController::class, 'editPendaftaran'])->name('pendaftaran.edit');
 
-    // Daftar dokumen pendukung
+    // Route untuk menambahkan pendaftaran
+    Route::get('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'createPendaftaran'])->name('pendaftaran.create');
+    Route::post('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'storePendaftaran'])->name('pendaftaran.store');
+
+    // Route untuk daftar dokumen pendukung
     Route::get('dokumen', [BeasiswaPendaftaranController::class, 'indexDokumenPendukung'])->name('dokumen.index');
+
+    // Route untuk form upload dokumen pendukung
+    Route::get('dokumen/upload', [BeasiswaPendaftaranController::class, 'createDokumenPendukung'])->name('dokumen.create');
+
+    // Route untuk menyimpan dokumen pendukung
+    Route::post('dokumen', [BeasiswaPendaftaranController::class, 'storeDokumenPendukung'])->name('dokumen.store');
+
+    // Route untuk verifikasi dokumen pendukung
+    Route::put('dokumen/{dokumen}/verifikasi', [BeasiswaPendaftaranController::class, 'verifikasi'])->name('dokumen.verifikasi');
+
+    // Route untuk store review pendaftaran
+    Route::post('review-pendaftaran', [BeasiswaPendaftaranController::class, 'storeReviewPendaftaran'])->name('review.pendaftaran.store');
+
+    // Route untuk store notifikasi
+    Route::post('notifikasi', [BeasiswaPendaftaranController::class, 'storeNotifikasi'])->name('notifikasi.store');
+
+    // Route untuk mengupdate beasiswa
+    Route::put('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'updateBeasiswa'])->name('beasiswa.update');
+
+    // Route untuk mengupdate pendaftaran
+    Route::put('/pendaftaran{id}', [BeasiswaPendaftaranController::class, 'updatePendaftaran'])->name('pendaftaran.update');
+
+    // Route untuk mengupdate dokumen pendukung
+    Route::put('dokumen/{id}', [BeasiswaPendaftaranController::class, 'updateDokumenPendukung'])->name('dokumen.update');
+
+    // Route untuk mengupdate review pendaftaran
+    Route::put('review-pendaftaran/{id}', [BeasiswaPendaftaranController::class, 'updateReviewPendaftaran'])->name('review.pendaftaran.update');
+
+    // Route untuk mengupdate notifikasi
+    Route::put('notifikasi/{id}', [BeasiswaPendaftaranController::class, 'updateNotifikasi'])->name('notifikasi.update');
+
+    // Route untuk menghapus beasiswa
+    Route::delete('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'destroyBeasiswa'])->name('beasiswa.destroy');
+
+    // Route untuk menghapus pendaftaran
+    Route::delete('pendaftaran/{id}', [BeasiswaPendaftaranController::class, 'destroyPendaftaran'])->name('pendaftaran.destroy');
+
+    // Route untuk menghapus dokumen pendukung
+    Route::delete('dokumen/{id}', [BeasiswaPendaftaranController::class, 'destroyDokumenPendukung'])->name('dokumen.destroy');
+
+    // Route untuk menghapus review pendaftaran
+    Route::delete('review-pendaftaran/{id}', [BeasiswaPendaftaranController::class, 'destroyReviewPendaftaran'])->name('review.pendaftaran.destroy');
+
+    // Route untuk menghapus notifikasi
+    Route::delete('notifikasi/{id}', [BeasiswaPendaftaranController::class, 'destroyNotifikasi'])->name('notifikasi.destroy');
 });

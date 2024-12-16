@@ -4,7 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Beasiswa</title>
+    <!-- Menggunakan Bootstrap 5 dan beberapa CSS kustom -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Background dengan warna pink muda untuk halaman */
+        body {
+            background-color: #FCE4EC; /* Latar belakang pink muda */
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Desain header dengan warna pink elegan */
+        h1 {
+            color: #F06292; /* Pink elegan untuk judul */
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        /* Desain untuk tabel */
+        .table {
+            background-color: #FFFFFF; /* Putih untuk latar belakang tabel */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header tabel */
+        th {
+            background-color: #F06292; /* Pink elegan untuk header tabel */
+            color: white;
+        }
+
+        /* Alternatif warna baris tabel */
+        tr:nth-child(even) {
+            background-color: #F8BBD0; /* Pink muda untuk baris genap */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #F48FB1; /* Pink lebih gelap untuk baris ganjil */
+        }
+
+        /* Styling untuk tombol */
+        .btn-info {
+            background-color: #F06292; /* Pink elegan untuk tombol */
+            border-color: #F06292;
+        }
+
+        .btn-info:hover {
+            background-color: #EC407A; /* Pink lebih gelap pada hover */
+            border-color: #EC407A;
+        }
+    </style>
 </head>
 <body>
     <div class="container my-5">

@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #e6f7ff;
+            background-color: #FCE4EC; /* Latar belakang pink muda elegan */
             color: #333;
             margin: 0;
             padding: 0;
@@ -16,7 +16,7 @@
 
         /* Navbar */
         .navbar {
-            background-color: #0099cc; /* Biru yang lebih tegas */
+            background-color: #F48FB1; /* Pink muda yang elegan */
             color: white;
             padding: 15px;
             text-align: center;
@@ -33,7 +33,7 @@
         }
 
         .navbar a:hover {
-            background-color: #0077b3;
+            background-color: #F06292; /* Pink lebih kuat pada hover */
             border-radius: 5px;
         }
 
@@ -46,7 +46,7 @@
 
         h1 {
             font-size: 36px;
-            color: #0077b3;
+            color: #F06292; /* Pink elegan untuk judul */
             text-align: center;
             margin-bottom: 20px;
         }
@@ -59,14 +59,14 @@
 
         .col-md-6 {
             width: 48%;
-            background-color: #ffffff;
+            background-color: #FFFFFF; /* Putih agar kontras dengan pink */
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         h3 {
-            color: #0099cc;
+            color: #F06292; /* Pink elegan untuk subjudul */
             font-size: 24px;
             margin-bottom: 15px;
         }
@@ -87,7 +87,7 @@
         }
 
         .btn {
-            background-color: #0099cc;
+            background-color: #F06292; /* Pink elegan untuk tombol */
             color: white;
             padding: 12px 30px;
             border: none;
@@ -102,7 +102,7 @@
         }
 
         .btn:hover {
-            background-color: #0077b3;
+            background-color: #EC407A; /* Pink lebih gelap pada hover */
         }
 
         /* Responsif */
