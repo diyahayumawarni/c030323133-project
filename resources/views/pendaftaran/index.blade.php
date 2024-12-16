@@ -78,8 +78,7 @@
         <h1>Data Pendaftaran Beasiswa</h1>
 
         <!-- Tombol "Tambah Pendaftaran" -->
-<<<<<<< HEAD
-        <a href="{{ route('pendaftaran.create') }}" class="add-button">Tambah Pendaftaran</a> <!-- Ganti URL sesuai dengan route yang sesuai -->
+        <a href="{{ route('pendaftaran.create') }}" class="add-button">Tambah Pendaftaran</a> <!-- Menggunakan route pendaftaran.create -->
 
         <!-- Pesan setelah tambah pendaftaran sukses -->
         @if(session('success'))
@@ -87,9 +86,6 @@
                 {{ session('success') }}
             </div>
         @endif
-=======
-        <a href="/tambah-pendaftaran" class="add-button">Tambah Pendaftaran</a> <!-- Ganti URL sesuai kebutuhan aplikasi Anda -->
->>>>>>> 9b0d276b26f421549bf256c4120b2321b7411eec
 
         <table>
             <thead>
@@ -101,10 +97,10 @@
                     <th>Status</th>
                     <th>Diperbaharui</th>
                     <th>Dibuat Pada</th>
+                    <th>Aksi</th> <!-- Tambahkan kolom aksi untuk show atau edit -->
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
                 @forelse($pendaftaran as $data)
                     <tr>
                         <td>{{ $data->id }}</td>
@@ -114,33 +110,16 @@
                         <td>{{ $data->status }}</td>
                         <td>{{ $data->updated_at }}</td>
                         <td>{{ $data->created_at }}</td>
+                        <td>
+                            <!-- Tautan untuk melihat detail pendaftaran -->
+                            <a href="{{ route('pendaftaran.show', $data->id) }}" class="btn btn-info">Lihat</a>
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center">Data tidak tersedia</td>
+                        <td colspan="8" class="text-center">Data tidak tersedia</td>
                     </tr>
                 @endforelse
-=======
-                <!-- Contoh Data -->
-                <tr>
-                    <td>1</td>
-                    <td>Diyah Ayu</td>
-                    <td>2024-12-15</td>
-                    <td>Beasiswa Unggulan</td>
-                    <td>Diproses</td>
-                    <td>2024-12-16</td>
-                    <td>2024-12-14</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Noor Alfa</td>
-                    <td>2024-12-14</td>
-                    <td>Beasiswa Prestasi</td>
-                    <td>Diterima</td>
-                    <td>2024-12-15</td>
-                    <td>2024-12-13</td>
-                </tr>
->>>>>>> 9b0d276b26f421549bf256c4120b2321b7411eec
             </tbody>
         </table>
     </div>

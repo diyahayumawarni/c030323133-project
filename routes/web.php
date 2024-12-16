@@ -48,16 +48,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Route untuk detail pendaftaran
     Route::get('pendaftaran/{id}', [BeasiswaPendaftaranController::class, 'showPendaftaran'])->name('pendaftaran.show');
-  
-// Route untuk halaman edit pendaftaran
-Route::get('pendaftaran/{id}/edit', [BeasiswaPendaftaranController::class, 'editPendaftaran'])->name('pendaftaran.edit');
+
+    // Route untuk halaman edit pendaftaran
+    Route::get('pendaftaran/{id}/edit', [BeasiswaPendaftaranController::class, 'editPendaftaran'])->name('pendaftaran.edit');
 
     // Route untuk menambahkan pendaftaran
-<<<<<<< HEAD
     Route::get('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'createPendaftaran'])->name('pendaftaran.create');
-=======
-    Route::get('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'createPendaftaran'])->name('tambah.pendaftaran');
->>>>>>> 9b0d276b26f421549bf256c4120b2321b7411eec
     Route::post('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'storePendaftaran'])->name('pendaftaran.store');
 
     // Route untuk daftar dokumen pendukung
@@ -82,11 +78,7 @@ Route::get('pendaftaran/{id}/edit', [BeasiswaPendaftaranController::class, 'edit
     Route::put('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'updateBeasiswa'])->name('beasiswa.update');
 
     // Route untuk mengupdate pendaftaran
-<<<<<<< HEAD
-    Route::put('/pendaftaran{id}', [BeasiswaPendaftaranController::class, 'updatePendaftaran'])->name('pendaftaran.update');
-=======
     Route::put('pendaftaran/{id}', [BeasiswaPendaftaranController::class, 'updatePendaftaran'])->name('pendaftaran.update');
->>>>>>> 9b0d276b26f421549bf256c4120b2321b7411eec
 
     // Route untuk mengupdate dokumen pendukung
     Route::put('dokumen/{id}', [BeasiswaPendaftaranController::class, 'updateDokumenPendukung'])->name('dokumen.update');
