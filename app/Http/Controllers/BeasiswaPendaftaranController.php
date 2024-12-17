@@ -102,7 +102,7 @@ class BeasiswaPendaftaranController extends Controller
             'user_id' => 'required|exists:users,id',
             'beasiswa_id' => 'required|exists:beasiswas,id',
             'tanggal_daftar' => 'required|date',
-            'status' => 'required|string'
+            'status_verifikasi' => 'required|string'
         ]);
 
         $pendaftaran = Pendaftaran::create($request->all());  // Menyimpan pendaftaran
@@ -226,6 +226,8 @@ class BeasiswaPendaftaranController extends Controller
         $pendaftaran->delete();
         return response()->json(['message' => 'Pendaftaran deleted successfully']);
     }
+
+
 
     // Menghapus Dokumen Pendukung
     public function destroyDokumenPendukung($id)

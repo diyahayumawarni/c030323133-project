@@ -34,14 +34,14 @@ class PendaftaranResource extends Resource
                 Forms\Components\DatePicker::make('tanggal_daftar')
                     ->label('Tanggal Daftar')
                     ->required(),
-                Forms\Components\Select::make('status')
+                Forms\Components\Select::make('status_pendaftaran')  // Perbaikan nama kolom
                     ->options([
                         'pending' => 'Pending',
                         'diterima' => 'Diterima',
                         'ditolak' => 'Ditolak',
                     ])
                     ->default('pending')
-                    ->label('Status'),
+                    ->label('Status Pendaftaran'),  // Perbaikan label
                 Forms\Components\DateTimePicker::make('created_at')
                     ->disabled()
                     ->label('Dibuat Pada'),
@@ -67,13 +67,13 @@ class PendaftaranResource extends Resource
                 Tables\Columns\TextColumn::make('tanggal_daftar')
                     ->label('Tanggal Daftar')
                     ->date(),
-                Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\BadgeColumn::make('status_pendaftaran')  // Perbaikan nama kolom
                     ->colors([
                         'primary' => 'pending',
                         'success' => 'diterima',
                         'danger' => 'ditolak',
                     ])
-                    ->label('Status'),
+                    ->label('Status Pendaftaran'),  // Perbaikan label
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat Pada')
                     ->dateTime(),
@@ -82,13 +82,13 @@ class PendaftaranResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('status')
+                Tables\Filters\SelectFilter::make('status_pendaftaran')  // Perbaikan nama kolom
                     ->options([
                         'pending' => 'Pending',
                         'diterima' => 'Diterima',
                         'ditolak' => 'Ditolak',
                     ])
-                    ->label('Status'),
+                    ->label('Status Pendaftaran'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

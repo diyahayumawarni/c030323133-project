@@ -56,15 +56,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'createPendaftaran'])->name('pendaftaran.create');
     Route::post('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'storePendaftaran'])->name('pendaftaran.store');
 
-    // Route untuk daftar dokumen pendukung
-    Route::get('dokumen', [BeasiswaPendaftaranController::class, 'indexDokumenPendukung'])->name('dokumen.index');
+    Route::get('/dokumen', [BeasiswaPendaftaranController::class, 'indexDokumenPendukung'])->name('dokumen.index');
 
-    // Route untuk form upload dokumen pendukung
-    Route::get('dokumen/upload', [BeasiswaPendaftaranController::class, 'createDokumenPendukung'])->name('dokumen.create');
-
-    // Route untuk menyimpan dokumen pendukung
-    Route::post('dokumen', [BeasiswaPendaftaranController::class, 'storeDokumenPendukung'])->name('dokumen.store');
-
+    // Route untuk menampilkan detail dokumen pendukung
+    Route::get('/dokumen/{id}', [BeasiswaPendaftaranController::class, 'showDokumenPendukung'])->name('dokumen.show');
+    
+    // Route untuk halaman edit dokumen pendukung
+    Route::get('/dokumen/{id}/edit', [BeasiswaPendaftaranController::class, 'editDokumenPendukung'])->name('dokumen.edit');
+    
+    // Route untuk menghapus dokumen pendukung
+    Route::delete('/dokumen/{id}', [BeasiswaPendaftaranController::class, 'destroyDokumenPendukung'])->name('dokumen.destroy');
+    
+    // Route untuk form tambah dokumen pendukung
+    Route::get('/dokumen/create', [BeasiswaPendaftaranController::class, 'createDokumenPendukung'])->name('dokumen.create');
+    Route::post('/dokumen', [BeasiswaPendaftaranController::class, 'storeDokumenPendukung'])->name('dokumen.store');
+ 
     // Route untuk verifikasi dokumen pendukung
     Route::put('dokumen/{dokumen}/verifikasi', [BeasiswaPendaftaranController::class, 'verifikasi'])->name('dokumen.verifikasi');
 

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -100,8 +100,8 @@
                 <label for="beasiswa">Beasiswa</label>
                 <select id="beasiswa" name="beasiswa" required>
                     <option value="">Pilih Beasiswa</option>
-                    <option value="Beasiswa Unggulan Poliban">Beasiswa Unggulan Poliban</option>
-                    <option value="Beasiswa Prestasi">Beasiswa Prestasi</option>
+                    <option value="MSIB">MSIB</option>
+                    <option value="Merdeka Belajar">Merdeka Belajar</option>
                     <option value="Beasiswa S1">Beasiswa S1</option>
                 </select>
             </div>
@@ -117,6 +117,16 @@
                     <option value="Dalam Proses">Dalam Proses</option>
                     <option value="Diterima">Diterima</option>
                     <option value="Ditolak">Ditolak</option>
+                </select>
+            </div>
+
+            <!-- Status Verifikasi -->
+            <div class="form-group">
+                <label for="status_verifikasi">Status Verifikasi</label>
+                <select id="status_verifikasi" name="status_verifikasi" required>
+                    <option value="pending">Pending</option>
+                    <option value="verifikasi">Verifikasi</option>
+                    <option value="ditolak">Ditolak</option>
                 </select>
             </div>
 

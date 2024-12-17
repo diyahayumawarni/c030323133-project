@@ -84,9 +84,9 @@
         <div class="info">
             <p><span>ID Pendaftaran:</span> {{ $pendaftaran->id }}</p>
             <p><span>Nama User:</span> {{ $pendaftaran->user->name ?? 'N/A' }}</p>
-            <p><span>Tanggal Mendaftar:</span> {{ $pendaftaran->tanggal_mendaftar }}</p>
+            <p><span>Tanggal Mendaftar:</span> {{ $pendaftaran->tanggal_daftar }}</p>
             <p><span>Beasiswa:</span> {{ $pendaftaran->beasiswa->nama_beasiswa ?? 'N/A' }}</p>
-            <p><span>Status:</span> {{ $pendaftaran->status }}</p>
+            <p><span>Status:</span> {{ $pendaftaran->status_verifikasi }}</p>
             <p><span>Dibuat Pada:</span> {{ $pendaftaran->created_at }}</p>
             <p><span>Diperbaharui Pada:</span> {{ $pendaftaran->updated_at }}</p>
         </div>

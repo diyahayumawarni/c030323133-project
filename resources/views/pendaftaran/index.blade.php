@@ -97,7 +97,7 @@
                     <th>Status</th>
                     <th>Diperbaharui</th>
                     <th>Dibuat Pada</th>
-                    <th>Aksi</th> <!-- Tambahkan kolom aksi untuk show atau edit -->
+                    <th>Aksi</th> <!-- Kolom aksi tanpa tombol lihat, edit, atau hapus -->
                 </tr>
             </thead>
             <tbody>
@@ -105,14 +105,13 @@
                     <tr>
                         <td>{{ $data->id }}</td>
                         <td>{{ $data->user->name ?? 'N/A' }}</td> <!-- Properti nama user -->
-                        <td>{{ $data->tanggal_mendaftar }}</td>
+                        <td>{{ $data->tanggal_daftar }}</td>
                         <td>{{ $data->beasiswa->nama_beasiswa ?? 'N/A' }}</td> <!-- Properti nama beasiswa -->
-                        <td>{{ $data->status }}</td>
+                        <td>{{ $data->status_verifikasi }}</td>
                         <td>{{ $data->updated_at }}</td>
                         <td>{{ $data->created_at }}</td>
                         <td>
-                            <!-- Tautan untuk melihat detail pendaftaran -->
-                            <a href="{{ route('pendaftaran.show', $data->id) }}" class="btn btn-info">Lihat</a>
+                            <!-- Tidak ada tombol aksi -->
                         </td>
                     </tr>
                 @empty
