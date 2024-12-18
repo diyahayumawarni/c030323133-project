@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -21,11 +21,12 @@
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            background-color: #fce4ec; /* Warna pink muda */
         }
 
         h1 {
             text-align: center;
-            color: #0077b3;
+            color: #d81b60; /* Warna pink */
             margin-bottom: 20px;
         }
 
@@ -42,7 +43,7 @@
         }
 
         table th {
-            background-color: #0077b3;
+            background-color: #d81b60; /* Warna pink */
             color: white;
             text-transform: uppercase;
             font-size: 14px;
@@ -60,7 +61,7 @@
             display: inline-block;
             margin-bottom: 20px;
             padding: 10px 15px;
-            background-color: #28a745;
+            background-color: #d81b60; /* Warna pink */
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -68,19 +69,30 @@
         }
 
         .add-button:hover {
-            background-color: #218838;
+            background-color: #c2185b; /* Warna pink lebih gelap */
         }
 
+        /* Tombol Kembali ke Home */
+        .back-home {
+            background-color: #d81b60; /* Warna pink */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-home:hover {
+            background-color: #c2185b; /* Warna pink lebih gelap */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Data Pendaftaran Beasiswa</h1>
 
-        <!-- Tombol "Tambah Pendaftaran" -->
-        <a href="{{ route('pendaftaran.create') }}" class="add-button">Tambah Pendaftaran</a> <!-- Menggunakan route pendaftaran.create -->
-
-        <!-- Pesan setelah tambah pendaftaran sukses -->
         @if(session('success'))
             <div style="background-color: #28a745; color: white; padding: 10px; margin-bottom: 20px;">
                 {{ session('success') }}
@@ -97,7 +109,7 @@
                     <th>Status</th>
                     <th>Diperbaharui</th>
                     <th>Dibuat Pada</th>
-                    <th>Aksi</th> <!-- Kolom aksi tanpa tombol lihat, edit, atau hapus -->
+                    <!-- Tidak ada kolom aksi -->
                 </tr>
             </thead>
             <tbody>
@@ -110,17 +122,17 @@
                         <td>{{ $data->status_verifikasi }}</td>
                         <td>{{ $data->updated_at }}</td>
                         <td>{{ $data->created_at }}</td>
-                        <td>
-                            <!-- Tidak ada tombol aksi -->
-                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="text-center">Data tidak tersedia</td>
+                        <td colspan="7" class="text-center">Data tidak tersedia</td>
                     </tr>
                 @endforelse
             </tbody>
         </table>
+
+        <!-- Tombol Kembali ke Home -->
+        <a href="{{ route('home') }}" class="back-home">Kembali ke Home</a>
     </div>
 </body>
 </html>

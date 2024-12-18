@@ -52,6 +52,16 @@
             background-color: #EC407A; /* Pink lebih gelap pada hover */
             border-color: #EC407A;
         }
+
+        .btn-secondary {
+            background-color: #F48FB1; /* Warna pink muda untuk tombol kembali */
+            border-color: #F48FB1;
+        }
+
+        .btn-secondary:hover {
+            background-color: #EC407A; /* Warna lebih gelap saat hover */
+            border-color: #EC407A;
+        }
     </style>
 </head>
 <body>
@@ -90,6 +100,13 @@
                 @endforeach
             </tbody>
         </table>
+
+        <!-- Tombol Kembali ke Home -->
+        <div class="text-center mt-4">
+            <a href="{{ route('home') }}" class="btn btn-secondary">
+                Kembali ke Home
+            </a>
+        </div>
     </div>
 
     <!-- Bootstrap JS -->

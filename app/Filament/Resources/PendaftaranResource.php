@@ -34,14 +34,14 @@ class PendaftaranResource extends Resource
                 Forms\Components\DatePicker::make('tanggal_daftar')
                     ->label('Tanggal Daftar')
                     ->required(),
-                Forms\Components\Select::make('status_pendaftaran')  // Perbaikan nama kolom
+                Forms\Components\Select::make('status_verifikasi')  // Perbaikan nama kolom
                     ->options([
                         'pending' => 'Pending',
                         'diterima' => 'Diterima',
                         'ditolak' => 'Ditolak',
                     ])
                     ->default('pending')
-                    ->label('Status Pendaftaran'),  // Perbaikan label
+                    ->label('Status Verifikasi'),  // Perbaikan label
                 Forms\Components\DateTimePicker::make('created_at')
                     ->disabled()
                     ->label('Dibuat Pada'),
@@ -67,13 +67,13 @@ class PendaftaranResource extends Resource
                 Tables\Columns\TextColumn::make('tanggal_daftar')
                     ->label('Tanggal Daftar')
                     ->date(),
-                Tables\Columns\BadgeColumn::make('status_pendaftaran')  // Perbaikan nama kolom
+                Tables\Columns\BadgeColumn::make('status_verifikasi')  // Perbaikan nama kolom
                     ->colors([
                         'primary' => 'pending',
                         'success' => 'diterima',
                         'danger' => 'ditolak',
                     ])
-                    ->label('Status Pendaftaran'),  // Perbaikan label
+                    ->label('Status Verifikasi'),  // Perbaikan label
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Dibuat Pada')
                     ->dateTime(),
@@ -82,13 +82,13 @@ class PendaftaranResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('status_pendaftaran')  // Perbaikan nama kolom
+                Tables\Filters\SelectFilter::make('status_verifikasi')  // Perbaikan nama kolom
                     ->options([
                         'pending' => 'Pending',
                         'diterima' => 'Diterima',
                         'ditolak' => 'Ditolak',
                     ])
-                    ->label('Status Pendaftaran'),
+                    ->label('Status Verifikasi'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

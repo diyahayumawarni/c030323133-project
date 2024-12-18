@@ -5,14 +5,21 @@
 @section('content')
 <div class="container mt-5">
     <div class="card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header" style="background-color: #f8bbd0; color: white;">
             Daftar Dokumen Pendukung
         </div>
-        <div class="card-body">
+        <div class="card-body" style="background-color: #fce4ec;">
+            <!-- Tampilkan pesan sukses -->
+            @if(session('success'))
+                <div class="alert alert-success" style="background-color: #f48fb1; color: white;">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <!-- Tabel Daftar Dokumen -->
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
-                    <thead>
+                    <thead style="background-color: #f8bbd0; color: white;">
                         <tr>
                             <th>ID</th>
                             <th>ID Pendaftaran</th>
@@ -32,13 +39,10 @@
                             <td>{{ $dokumen->nama_dokumen }}</td>
                             <td>{{ Str::limit($dokumen->file_path, 30) }}</td>
                             <td>
-                                <span class="badge 
-                                    @if($dokumen->status_verifikasi == 'belum') 
-                                        badge-danger 
-                                    @else
-                                        badge-success 
-                                    @endif
-                                    ">
+                                <span @class([
+                                    'badge', 
+                                    $dokumen->status_verifikasi == 'belum' ? 'bg-danger' : 'bg-success'
+                                ])>
                                     {{ $dokumen->status_verifikasi == 'belum' ? 'Belum Diverifikasi' : 'Sudah Diverifikasi' }}
                                 </span>
                             </td>
@@ -48,7 +52,9 @@
                                 <form action="{{ route('dokumen.destroy', $dokumen->id) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumen ini?')">Hapus</button>
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus dokumen ini?')" style="background-color: #f48fb1; border: none; color: white;">
+                                        Hapus
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -56,11 +62,14 @@
                     </tbody>
                 </table>
             </div>
-            <!-- Tombol untuk menambah dokumen baru -->
-            <div class="mt-3">
-                <a href="{{ route('dokumen.create') }}" class="btn btn-success">Tambah Dokumen Pendukung</a>
+
+            <!-- Tombol Kembali ke Home -->
+            <div class="text-center mt-4">
+                <a href="{{ route('home') }}" class="btn btn-secondary" style="background-color: #f48fb1; color: white; border: none;">
+                    Kembali ke Home
+                </a>
             </div>
-        </div>
+        </div> 
     </div>
 </div>
 @endsection

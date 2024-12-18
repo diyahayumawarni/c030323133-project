@@ -43,8 +43,9 @@ Route::middleware(['auth'])->group(function () {
     // Route untuk detail beasiswa
     Route::get('beasiswa/{id}', [BeasiswaPendaftaranController::class, 'showBeasiswa'])->name('beasiswa.show');
 
-    // Route untuk daftar pendaftaran
-    Route::get('pendaftaran', [BeasiswaPendaftaranController::class, 'indexPendaftaran'])->name('pendaftaran.index');
+    Route::get('/pendaftaran', [BeasiswaPendaftaranController::class, 'indexPendaftaran'])->name('pendaftaran.index');
+    Route::get('/pendaftaran/create', [BeasiswaPendaftaranController::class, 'createPendaftaran'])->name('pendaftaran.create');
+    Route::post('/pendaftaran', [BeasiswaPendaftaranController::class, 'storePendaftaran'])->name('pendaftaran.store');
 
     // Route untuk detail pendaftaran
     Route::get('pendaftaran/{id}', [BeasiswaPendaftaranController::class, 'showPendaftaran'])->name('pendaftaran.show');
@@ -52,12 +53,8 @@ Route::middleware(['auth'])->group(function () {
     // Route untuk halaman edit pendaftaran
     Route::get('pendaftaran/{id}/edit', [BeasiswaPendaftaranController::class, 'editPendaftaran'])->name('pendaftaran.edit');
 
-    // Route untuk menambahkan pendaftaran
-    Route::get('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'createPendaftaran'])->name('pendaftaran.create');
-    Route::post('/tambah-pendaftaran', [BeasiswaPendaftaranController::class, 'storePendaftaran'])->name('pendaftaran.store');
-
     Route::get('/dokumen', [BeasiswaPendaftaranController::class, 'indexDokumenPendukung'])->name('dokumen.index');
-
+  
     // Route untuk menampilkan detail dokumen pendukung
     Route::get('/dokumen/{id}', [BeasiswaPendaftaranController::class, 'showDokumenPendukung'])->name('dokumen.show');
     
@@ -70,7 +67,7 @@ Route::middleware(['auth'])->group(function () {
     // Route untuk form tambah dokumen pendukung
     Route::get('/dokumen/create', [BeasiswaPendaftaranController::class, 'createDokumenPendukung'])->name('dokumen.create');
     Route::post('/dokumen', [BeasiswaPendaftaranController::class, 'storeDokumenPendukung'])->name('dokumen.store');
- 
+    Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
     // Route untuk verifikasi dokumen pendukung
     Route::put('dokumen/{dokumen}/verifikasi', [BeasiswaPendaftaranController::class, 'verifikasi'])->name('dokumen.verifikasi');
 
@@ -109,4 +106,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Route untuk menghapus notifikasi
     Route::delete('notifikasi/{id}', [BeasiswaPendaftaranController::class, 'destroyNotifikasi'])->name('notifikasi.destroy');
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+

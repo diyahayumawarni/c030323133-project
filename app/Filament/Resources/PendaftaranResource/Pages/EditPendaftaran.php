@@ -19,13 +19,4 @@ class EditPendaftaran extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-
-    // Mengalihkan pengguna ke halaman daftar setelah berhasil mengedit
-    protected function getRedirectUrl(): string
-    {
-        // Setelah berhasil mengedit, arahkan kembali ke halaman daftar Pendaftaran
-        return route('filament.resources.pendaftarans.index');
-    }
-
-
 }

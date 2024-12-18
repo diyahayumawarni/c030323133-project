@@ -1,5 +1,3 @@
-<!-- resources/views/layouts/app.blade.php -->
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -29,8 +27,18 @@
                         <a class="nav-link" href="{{ route('pendaftaran.index') }}">Pendaftaran</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}">Logout</a>
+                        <a class="nav-link" href="{{ route('dokumen.index') }}">Dokumen</a>
                     </li>
+                    
+                    <!-- Form Logout -->
+                    @if(auth()->check())
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-link nav-link">Logout</button>
+                        </form>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>

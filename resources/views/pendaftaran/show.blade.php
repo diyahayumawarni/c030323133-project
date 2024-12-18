@@ -78,6 +78,16 @@
     </style>
 </head>
 <body>
+
+<!-- Navbar -->
+<div class="navbar">
+        <a href="{{ route('home') }}">Home</a>
+        <a href="{{ route('beasiswa.index') }}">Beasiswa</a>
+        <a href="{{ route('pendaftaran.index') }}">Pendaftaran</a>
+        <a href="{{ route('dokumen.index') }}">Dokumen</a>
+        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+    </div>
+
     <div class="container">
         <h1>Detail Pendaftaran Beasiswa</h1>
 
@@ -90,7 +100,7 @@
             <p><span>Dibuat Pada:</span> {{ $pendaftaran->created_at }}</p>
             <p><span>Diperbaharui Pada:</span> {{ $pendaftaran->updated_at }}</p>
         </div>
-
+              
         <div class="actions">
             <a href="{{ route('pendaftaran.edit', $pendaftaran->id) }}" class="btn">Edit</a>
             <form action="{{ route('pendaftaran.destroy', $pendaftaran->id) }}" method="POST" style="display:inline;">

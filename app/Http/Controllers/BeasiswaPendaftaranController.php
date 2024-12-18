@@ -117,11 +117,10 @@ class BeasiswaPendaftaranController extends Controller
     public function storeDokumenPendukung(Request $request)
     {
     // Validasi file
-    $request->validate([
-        'nama_dokumen' => 'required|string',
-        'file' => 'required|file|mimes:pdf,jpeg,png,jpg|max:2048',
-    ]);
-    
+        $DokumenPendukung = new DokumenPendukung();
+        $DokumenPendukung->pendaftaran_id = $request->pendaftaran_id;
+        $DokumenPendukung->nama_dokumen = $request->nama_dokumen;
+        $DokumenPendukung->save();
     // Mengupload file
     $filePath = $request->file('file')->store('dokumen'); // menyimpan di folder 'dokumen'
 
@@ -131,6 +130,7 @@ class BeasiswaPendaftaranController extends Controller
         'nama_dokumen' => $request->nama_dokumen,
         'file_path' => $filePath,
         'status_verifikasi' => 'pending',
+        
     ]);
     
     return redirect()->route('dokumen.index')->with('success', 'Dokumen berhasil diupload.');
@@ -229,13 +229,15 @@ class BeasiswaPendaftaranController extends Controller
 
 
 
-    // Menghapus Dokumen Pendukung
     public function destroyDokumenPendukung($id)
     {
         $dokumenPendukung = DokumenPendukung::findOrFail($id);
-        $dokumenPendukung->delete();
-        return response()->json(['message' => 'Dokumen Pendukung deleted successfully']);
+        $dokumenPendukung->delete(); // Hapus dokumen
+    
+        // Redirect dengan pesan sukses
+        return redirect()->route('dokumen.index')->with('success', 'Dokumen berhasil dihapus.');
     }
+    
 
     // Menghapus Review Pendaftaran
     public function destroyReviewPendaftaran($id)
@@ -252,5 +254,7 @@ class BeasiswaPendaftaranController extends Controller
         $notifikasi->delete();
         return response()->json(['message' => 'Notifikasi deleted successfully']);
     }
+
+    
 }
 

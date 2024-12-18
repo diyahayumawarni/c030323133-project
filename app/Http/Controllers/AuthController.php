@@ -16,23 +16,20 @@ class AuthController extends Controller
 {
     // Login User
     public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required|string',
+    ]);
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Mengambil data user yang telah login
-            $user = Auth::user();
-
-            // Mengarahkan user ke halaman home setelah login sukses
-            return redirect()->route('home');
-        }
-
-        // Jika kredensial salah
-        return redirect()->route('login.form')->withErrors(['email' => 'Invalid credentials'])->withInput();
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Login berhasil
+        return redirect()->route('home');
     }
+
+    // Menambahkan pesan lebih jelas jika kredensial salah
+    return redirect()->route('login.form')->withErrors(['email' => 'Email or password is incorrect'])->withInput();
+}
 
     // Registrasi User
     public function register(Request $request)
@@ -58,6 +55,7 @@ class AuthController extends Controller
     // Logout User
     public function logout(Request $request)
     {
+        // Logout user
         Auth::logout();
 
         // Mengarahkan user ke halaman login setelah logout
@@ -126,5 +124,15 @@ class AuthController extends Controller
         // Mendapatkan semua notifikasi yang terkait dengan user yang sedang login
         $notifikasi = Notifikasi::where('user_id', Auth::id())->get();
         return response()->json($notifikasi);
+    }
+
+    // Metode untuk logout tanpa menghapus akun
+    public function destroy(Request $request)
+    {
+        // Logout pengguna yang sedang login
+        Auth::logout();
+
+        // Mengarahkan user ke halaman login setelah logout
+        return redirect()->route('login.form')->with('success', 'You have been logged out successfully.');
     }
 }
